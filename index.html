@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сергиево-Посадский стекольный завод — Учёт продукции</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <a class="header__logo header__logo--text" href="#" aria-label="Главная">СПСЗ</a>
+
+            <nav class="header__nav">
+                <a class="header__link" href="#about">О компании</a>
+                <a class="header__link" href="#products">Продукция</a>
+                <a class="header__link" href="#catalog">Каталог</a>
+                <a class="header__link" href="#accounting">Учёт на складе</a>
+                <a class="header__link" href="#order">Заказать тару</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <section class="hero" id="about">
+                <div class="hero__card">
+                    <div class="hero__title-box">
+                        <h1 class="hero__title">Сергиево<br>Посадский<br>стекольный<br>завод</h1>
+                    </div>
+                    <img class="hero__image" src="photo_of_the_factory.png" alt="Сергиево-Посадский стекольный завод">
+                </div>
+                <p class="hero__text">
+                    В 2004 году — была введена в эксплуатацию первая очередь завода производительностью 300 тонн стекломассы в сутки, а в 2006 году — введены в эксплуатацию вторая и третья очереди завода, производительностью соответственно 220 и 340 тонн стекломассы в сутки.
+                </p>
+
+            </section>
+            <section class="products" id="products">
+                <h2 class="products__title">Наша продукция</h2>
+                <div class="products__slider">
+                    <button class="products__arrow products__arrow--left" type="button" id="sliderPrev">←</button>
+                    <div class="products__list" id="sliderTrack">
+                        <img class="products__image" src="А-005.jpg" alt="А-005 — 0,75 л" title="А-005 — 0,75 л">
+                        <img class="products__image" src="А-738.png" alt="А-738 — 0,25 л" title="А-738 — 0,25 л">
+                        <img class="products__image" src="А-251.jpg" alt="А-251 — 1 л" title="А-251 — 1 л">
+                        <img class="products__image" src="А-840.jpg" alt="А-840 — 0,7 л" title="А-840 — 0,7 л">
+                        <img class="products__image" src="А-1065.jpg" alt="А-1065 — 0,5 л" title="А-1065 — 0,5 л">
+                        <img class="products__image" src="А-617.jpg" alt="А-617 — 1 л" title="А-617 — 1 л">
+                    </div>
+                    <button class="products__arrow products__arrow--right" type="button" id="sliderNext">→</button>
+                </div>
+            </section>
+
+            <section class="catalog" id="catalog">
+                <h2 class="section-title">Каталог продукции</h2>
+
+                <div class="catalog__controls">
+                    <input type="text" id="searchInput" class="catalog__search" placeholder="Поиск по названию или артикулу...">
+
+                    <select id="filterType" class="catalog__filter">
+            <option value="">Все типы</option>
+            <option value="банка">Банка</option>
+            <option value="бутылка">Бутылка</option>
+          </select>
+
+                    <select id="filterColor" class="catalog__filter">
+            <option value="">Все цвета</option>
+            <option value="прозрачное">Прозрачное</option>
+            <option value="зелёное">Зелёное</option>
+            <option value="коричневое">Коричневое</option>
+            <option value="синее">Синее</option>
+          </select>
+                </div>
+
+                <div class="catalog__grid" id="catalogGrid">
+                </div>
+            </section>
+
+            <section class="accounting" id="accounting">
+                <h2 class="section-title">Учёт продукции на складе</h2>
+
+                <div class="dashboard" id="dashboard">
+                    <div class="dashboard__card">
+                        <div class="dashboard__value" id="totalPositions">0</div>
+                        <div class="dashboard__label">Позиций</div>
+                    </div>
+                    <div class="dashboard__card">
+                        <div class="dashboard__value" id="totalStock">0</div>
+                        <div class="dashboard__label">Общий остаток (шт.)</div>
+                    </div>
+                    <div class="dashboard__card dashboard__card--warning">
+                        <div class="dashboard__value" id="lowStockCount">0</div>
+                        <div class="dashboard__label">Критический остаток</div>
+                    </div>
+                </div>
+
+                <div class="accounting__actions">
+                    <button class="btn btn--primary" id="btnAddProduct">+ Добавить продукцию</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="accounting-table" id="accountingTable">
+                        <thead>
+                            <tr>
+                                <th>Артикул</th>
+                                <th>Наименование</th>
+                                <th>Тип</th>
+                                <th>Объём, л</th>
+                                <th>Цвет</th>
+                                <th>Остаток, шт.</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accountingBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="info">
+                <h2 class="info__title">Информация</h2>
+                <div class="info__content">
+                    <div class="info__text info__text--left">
+                        <p>
+                            Стеклянные банки и бутылки, выпущенные на заводе, отличаются европейским качеством исполнения, экологической чистотой, высокой степенью водо- и химической стойкости, прочностью и легкостью, идеальной геометрией, эксклюзивным дизайном.
+                        </p>
+                        <p>
+                            На заводе внедрена, сертифицирована и успешно функционирует система менеджмента безопасности и качества выпускаемой продукции в соответствии с требованиями Международных Стандартов серии ИСО 9000, 22000 и принципов НАССР.
+                        </p>
+                        <p>
+                            Техническое оснащение предприятия находится на уровне ведущих мировых производителей стеклотары. Завод оснащен высокоточными контрольно-измерительными аппаратами компаний Busch&Spreen, AGR, IRIS, SGCC. Контроль качества выпускаемой продукции полностью
+                            автоматизирован.
+                        </p>
+                        <p>
+                            В 2014 году на заводе установлено оборудование и освоена технология производства цветного стекла окрашиванием в фидере.
+                        </p>
+                        <p>
+                            В 2016 году запущен процесс NNPB (Narrow Neck Press And Blow — прессовыдувная выработка легковесных узкогорлых стеклотарных изделий). Данная технология позволяет производить более легкую тару.
+                        </p>
+                        <p>
+                            Сотрудники завода обеспечивают полный цикл производства: от разработок (собственный конструкторский отдел) до хранения (крытые склады) и транспортировки продукции (автомобильный и ж/д транспорт).
+                        </p>
+                    </div>
+                    <div class="info__text info__text--right">
+                        <p>
+                            В 2019 году проведена реконструкция и введен в эксплуатацию третий цех. Запущена в работу СФМ Heye для производства стеклянной тары методом NNPB.
+                        </p>
+                        <p>
+                            Потребители продукции завода — ведущие российские и иностранные предприятия пищевой промышленности. Завод поставляет стеклотару в Европу (Германия, Словакия, Польша), а также потребителям в Грузии, Азербайджане, Молдавии, Армении, Беларуси и Казахстане.
+                        </p>
+                        <p>
+                            Партнеры СПСЗ отмечают как высокое качество стеклотары, соответствующее европейским стандартам, так и отличный уровень оказываемых предприятием услуг — своевременность и точность исполнения заказов, оперативное решение рабочих вопросов, профессионализм
+                            и коммуникабельность менеджмента всех уровней.
+                        </p>
+                        <p>
+                            Производством руководит высококвалифицированный российский менеджмент.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info__order" id="order">
+                    <h3 class="info__order-title">Хотите заказать эксклюзивную тару?</h3>
+                    <button class="info__button" id="openOrderModal" type="button">Заказать тару</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__nav">
+                <a class="footer__link" href="#">Главная</a>
+                <a class="footer__link" href="#catalog">Каталог</a>
+                <a class="footer__link" href="#accounting">Учёт</a>
+                <a class="footer__link" href="#order">Заказать тару</a>
+                <a class="footer__link" href="#about">О нас</a>
+            </div>
+
+            <div class="footer__content">
+                <div class="footer__block">
+                    <p>
+                        ООО «Сергиево-Посадский стекольный завод»<br> 141336, Московская обл., г. Сергиев Посад, с. Иудино, д. 5<br> Телефоны:
+                        <br> +7 (495) 223-07-01<br> +7 (495) 995-12-88<br> +7 (495) 995-12-89<br> Факс: +7 (495) 995-12-72<br> E-mail: info@glassfactory.ru
+                    </p>
+                    <p>
+                        Коммерческий отдел — ООО «Авангард-Стекло-Трэйд»<br> Телефон: +7 (495) 223-29-22 доб. 20-01, 20-30<br> Факс: +7 (495) 223-29-22 доб. 20-04<br> E-mail: sbyt@avangard-steklo.com
+                    </p>
+                </div>
+                <div class="footer__block footer__block--contacts">
+                    <p>
+                        Контакты:<br> +7 (495) 223 29 22<br> press@avangard-steklo.com
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal" id="productModal">
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">&times;</button>
+            <h3 class="modal__title" id="modalTitle">Добавить продукцию</h3>
+
+            <form id="productForm">
+                <input type="hidden" id="productId">
+
+                <div class="form-group">
+                    <label for="article">Артикул *</label>
+                    <input type="text" id="article" required placeholder="Например: А-835">
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Наименование *</label>
+                    <input type="text" id="name" required placeholder="Банка 0.5 л">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="type">Тип *</label>
+                        <select id="type" required>
+              <option value="банка">Банка</option>
+              <option value="бутылка">Бутылка</option>
+            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="volume">Объём, л *</label>
+                        <input type="number" id="volume" step="0.01" min="0.1" required placeholder="0.5">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="color">Цвет *</label>
+                        <select id="color" required>
+              <option value="прозрачное">Прозрачное</option>
+              <option value="зелёное">Зелёное</option>
+              <option value="коричневое">Коричневое</option>
+              <option value="синее">Синее</option>
+            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Остаток, шт. *</label>
+                        <input type="number" id="stock" min="0" required placeholder="10000">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn--secondary" id="btnCancel">Отмена</button>
+                    <button type="submit" class="btn btn--primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="orderModal" aria-hidden="true">
+        <div class="modal__content order-modal__content" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+            <button class="modal__close" id="orderModalClose" type="button" aria-label="Закрыть">&times;</button>
+            <h3 class="modal__title" id="orderModalTitle">Оформление заказа</h3>
+            <p class="order-modal__description">Выберите продукцию и укажите контактные данные. Заказ будет подготовлен для отправки в коммерческий отдел.</p>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="orderProduct">Продукция *</label>
+                    <select id="orderProduct" required></select>
+                    <small class="order-stock" id="orderStockInfo"></small>
+                </div>
+                <div class="form-group">
+                    <label for="orderQuantity">Количество, шт. *</label>
+                    <input type="number" id="orderQuantity" min="1" step="1" required placeholder="Например: 1000">
+                </div>
+                <div class="form-group">
+                    <label for="orderCustomer">Имя или название организации *</label>
+                    <input type="text" id="orderCustomer" required maxlength="100" placeholder="Как к вам обращаться">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="orderPhone">Телефон *</label>
+                        <input type="tel" id="orderPhone" required maxlength="30" placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <div class="form-group">
+                        <label for="orderEmail">Электронная почта</label>
+                        <input type="email" id="orderEmail" maxlength="100" placeholder="mail@example.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="orderComment">Комментарий к заказу</label>
+                    <textarea id="orderComment" rows="4" maxlength="1000" placeholder="Дополнительные пожелания"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn--secondary" id="orderCancel">Отмена</button>
+                    <button type="submit" class="btn btn--primary">Подготовить заказ</button>
+                </div>
+                <p class="order-modal__note">* Обязательные поля. Отправка выполняется через почтовую программу на вашем устройстве.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
